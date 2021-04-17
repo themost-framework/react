@@ -40,6 +40,7 @@
     "@types/node": "^12.12.38",
     "@types/react": "^16.9.27",
     "@types/react-dom": "^16.9.7",
+    "@types/react-router": "^5.1.13",
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
     "@typescript-eslint/typescript-estree": "^4.21.0",
@@ -68,7 +69,11 @@
     "dist"
   ],
   "dependencies": {
-    "@themost/client": "^2.5.3"
-  },
-  "proxy": "http://localhost:4000"
+    "@themost/client": "^2.5.3",
+    "bootstrap": "^4.6.0",
+    "http-proxy-middleware": "^1.1.2",
+    "react-bootstrap": "^1.5.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
+  }
 }
