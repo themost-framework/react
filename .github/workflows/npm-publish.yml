@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - run: npm run p2:api
+      - run: npm run pm2:api
       - run: npm run test:unit
       - run: npm run build
 
