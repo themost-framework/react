@@ -70,4 +70,18 @@ describe('ReactDataContext', () => {
     expect(result.skip).toBe(0)
     expect(result.total).toBeGreaterThan(0)
   })
+
+  it('should parse dates', async () => {
+    const token = await getToken()
+    const context = new ReactDataContext('http://localhost:4000/api/')
+    context.setBearerAuthorization(token.access_token)
+    const item = await context
+      .model('Users')
+      .where('name')
+      .equal('alexis.rees@example.com')
+      .getItem()
+    expect(item).toBeTruthy()
+    expect(item.name).toBe('alexis.rees@example.com')
+    expect(item.dateCreated).toBeInstanceOf(Date)
+  })
 })

@@ -49,10 +49,20 @@ export class ReactDataService extends ClientDataService {
         })
       }
     }
+    const reviver = this.getOptions().useJsonReviver
+    if (typeof reviver === 'function') {
+      Object.assign(config, {
+        responseType: 'arraybuffer'
+      })
+    }
     const response = await axios(config)
     if (response.status === 204) {
       return null
     } else if (response.status === 200) {
+      if (typeof reviver === 'function') {
+        const buffer = Buffer.from(response.data, 'binary')
+        return JSON.parse(buffer.toString(), reviver)
+      }
       return response.data
     }
     // otherwise throw error
