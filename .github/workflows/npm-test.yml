@@ -19,9 +19,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
     steps:
-    - id: step1
-      run: npm ci && npm run start:api
-    - id: step2
-      run: npm run build && npm test
+    - run: npm ci
+    - run: npm run build
+    - run: npm start:api
+    - run: npm test
       env:
         CI: true
