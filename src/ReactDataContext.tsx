@@ -1,9 +1,9 @@
-import { ClientDataContext, TextUtils } from '@themost/client'
+import { ClientDataContext, TextUtils, ClientDataContextOptions } from '@themost/client'
 import { ReactDataService } from './ReactDataService'
 export class ReactDataContext extends ClientDataContext {
-  constructor(remote: string) {
+  constructor(remote: string, options?: ClientDataContextOptions) {
     super(
-      new ReactDataService(remote, {
+      new ReactDataService(remote, Object.assign({}, {
         useMediaTypeExtensions: false,
         useResponseConversion: true,
         useJsonReviver: function jsonReviver(_key: string, value: any) {
@@ -12,7 +12,7 @@ export class ReactDataContext extends ClientDataContext {
           }
           return value
         }
-      })
+      }, options))
     )
   }
 }

@@ -84,4 +84,36 @@ describe('ReactDataContext', () => {
     expect(item.name).toBe('alexis.rees@example.com')
     expect(item.dateCreated).toBeInstanceOf(Date)
   })
+
+  it('should use expand', async () => {
+    const token = await getToken()
+    const context = new ReactDataContext('http://localhost:4000/api/')
+    context.setBearerAuthorization(token.access_token)
+    const item = await context
+      .model('Users')
+      .where('name')
+      .equal('alexis.rees@example.com')
+      .expand('groups')
+      .getItem()
+    expect(item).toBeTruthy()
+    expect(item.groups).toBeInstanceOf(Array)
+  })
+
+  it('should use select', async () => {
+    const token = await getToken()
+    const context = new ReactDataContext('http://localhost:4000/api/')
+    context.setBearerAuthorization(token.access_token)
+    const item = await context
+      .model('Users')
+      .where('name')
+      .equal('alexis.rees@example.com')
+      .select('id', 'name')
+      .getItem()
+    expect(item).toBeTruthy()
+    const keys = Object.keys(item)
+    expect(keys.length).toBe(2)
+    expect(keys[0]).toBe('id')
+    expect(keys[1]).toBe('name')
+  })
+
 })
