@@ -11,6 +11,7 @@ import { UserService } from '../services/UserService';
 import Customers from '../components/Customers';
 import Orders from '../components/Orders';
 import Home from '../components/Home';
+import LoginCallback from '../components/LoginCallback';
 
 const routes = [
   {
@@ -25,6 +26,10 @@ const routes = [
   {
     path: "/orders",
     component: Orders
+  },
+  {
+    path: "/login/callback",
+    component: LoginCallback
   }
 ];
 
@@ -53,7 +58,7 @@ const Dash = () => {
                 </NavDropdown>
               </Nav>
               <Nav>
-                <Nav.Link href="/auth/login">User</Nav.Link>
+                <Nav.Link href="/auth/login?client_id=9165351833584149&scope=profile&redirect_uri=/login/callback">User</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

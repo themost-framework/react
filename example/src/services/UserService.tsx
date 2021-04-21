@@ -1,5 +1,5 @@
 import React from 'react';
-import {DataContext} from '../data-context';
+import { ReactDataContext } from '@themost/react';
 
 export declare interface Group {
    id: number;
@@ -48,7 +48,7 @@ export class UserService {
   }
 
   redirectToLogin() {
-    window.location.href = "/auth/login?client_id=9165351833584149&scope=profile&redirect_uri=/";
+    window.location.href = "/auth/login?client_id=9165351833584149&scope=profile&redirect_uri=/login/callback";
     return (
       <></>
     )

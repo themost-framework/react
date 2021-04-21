@@ -5,6 +5,7 @@ import {
   DataServiceExecuteOptions,
   ResponseError
 } from '@themost/client'
+import axios from 'axios'
 /**
  * A client data service for MOST Web Framework
  */
@@ -16,17 +17,20 @@ export class ReactDataService extends ClientDataService {
 
   async execute(options: DataServiceExecuteOptions): Promise<any> {
     // get absolute url
-    const finalUrl = this.resolve(options.url)
-    const request: any = {
+    const config: any = {
       method: options.method,
-      url: finalUrl,
-      credentials: 'include',
-      headers: options.headers
+      url: this.resolve(options.url),
+      headers: this.getHeaders() // set service headers
     }
+    // assign options headers if any
+    if (options.headers) {
+      Object.assign(config.headers, options.headers)
+    }
+
     if (options.method === 'POST' || options.method === 'PUT') {
       // add body
-      Object.assign(request, {
-        body: options.data
+      Object.assign(config, {
+        data: options.data
       })
     } else {
       // for HEAD, GET, OPTIONS, DELETE set query params
@@ -40,14 +44,16 @@ export class ReactDataService extends ClientDataService {
             queryParams.append(key, options.data[key])
           })
         // assign url with params
-        Object.assign(request, {
-          url: finalUrl + queryParams.toString()
+        Object.assign(config, {
+          url: config.url + '?' + queryParams.toString()
         })
       }
     }
-    const response = await fetch(request)
-    if (response.ok) {
-      return await response.json()
+    const response = await axios(config)
+    if (response.status === 204) {
+      return null
+    } else if (response.status === 200) {
+      return response.data
     }
     // otherwise throw error
     throw new ResponseError(
@@ -60,17 +66,16 @@ export class ReactDataService extends ClientDataService {
    * Gets service metadata
    */
   async getMetadata(): Promise<EdmSchema> {
-    const request: any = {
+    const config: any = {
+      method: 'GET',
       url: this.resolve('$metadata'),
-      credentials: 'include'
+      headers: this.getHeaders()
     }
     // get response
-    const response = await fetch(request)
-    if (response.ok) {
-      // and text
-      const text = await response.text()
+    const response = await axios(config)
+    if (response.status === 200) {
       // load schema
-      return EdmSchema.loadXML(text)
+      return EdmSchema.loadXML(response.data)
     }
     // otherwise throw error
     throw new ResponseError(
