@@ -61,8 +61,11 @@ export class ReactDataService extends ClientDataService {
     } else if (response.status === 200) {
       if (typeof reviver === 'function') {
         // get response content type
-        const contentType: string = response.headers['content-type'];
-        if (contentType.match(/^application\/json;?/) || contentType.match(/^application\/ld\+json;?/)) {
+        const contentType: string = response.headers['content-type']
+        if (
+          contentType.match(/^application\/json;?/) ||
+          contentType.match(/^application\/ld\+json;?/)
+        ) {
           const buffer = Buffer.from(response.data, 'binary')
           return JSON.parse(buffer.toString(), reviver)
         }

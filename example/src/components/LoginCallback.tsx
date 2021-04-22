@@ -1,8 +1,12 @@
 import React from 'react';
-import { UserService } from '../services/UserService';
+import { UserService, User } from '../services/UserService';
+import { Redirect } from 'react-router';
 
+declare interface LoginStateCallbackState {
+  user: User | null
+}
 
-export default class LoginCallback extends React.Component {
+export default class LoginCallback extends React.Component<{}, LoginStateCallbackState> {
 
   constructor(props: any) {
     super(props);
@@ -24,6 +28,10 @@ export default class LoginCallback extends React.Component {
   }
 
    render() {
+    const hasUser = this.state.user;
+    if (hasUser) {
+      return <Redirect to="/customers"></Redirect>
+    }
     return <>
       </>;
   }

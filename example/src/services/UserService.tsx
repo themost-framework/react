@@ -20,11 +20,11 @@ export declare interface User {
 }
 
 export class UserService {
-  getCurrentUser() {
+  getCurrentUser(): User {
     const currentUserValue = localStorage.getItem('currentUser');
     let currentUser = null;
     if (currentUserValue) {
-      currentUser = JSON.stringify(currentUserValue)
+      currentUser = JSON.parse(currentUserValue);
     }
     return currentUser;
   }

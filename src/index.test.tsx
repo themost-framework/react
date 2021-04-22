@@ -115,5 +115,4 @@ describe('ReactDataContext', () => {
     expect(keys[0]).toBe('id')
     expect(keys[1]).toBe('name')
   })
-
 })
