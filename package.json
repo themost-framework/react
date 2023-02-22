@@ -14,7 +14,9 @@
   "scripts": {
     "build": "rimraf dist && rollup -c ./rollup.config.js",
     "test": "react-scripts test",
-    "start:api": "PORT=4000 node ./node_modules/@themost/test/dist/server/standalone"
+    "start:api": "PORT=4000 node ./node_modules/@themost/test/dist/server/standalone",
+    "pm2": "pm2",
+    "pm2:api": "PORT=4000 npm run pm2 start ./node_modules/@themost/test/dist/server/standalone.js"
   },
   "peerDependencies": {
     "react": "^16 || ^17 || ^18"
