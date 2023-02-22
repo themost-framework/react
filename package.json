@@ -6,39 +6,30 @@
   "license": "BSD-3-Clause",
   "repository": "https://github.com/themost-framework/themost-react.git",
   "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "module": "dist/index.esm.js",
   "source": "src/index.tsx",
   "engines": {
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build",
-    "start:api": "PORT=4000 node ./node_modules/@themost/test/dist/server/standalone",
-    "pm2": "pm2",
-    "pm2:api": "PORT=4000 npm run pm2 start ./node_modules/@themost/test/dist/server/standalone.js"
+    "build": "rimraf dist && rollup -c ./rollup.config.js",
+    "test": "react-scripts test",
+    "start:api": "PORT=4000 node ./node_modules/@themost/test/dist/server/standalone"
   },
   "peerDependencies": {
     "react": "^16.0.0"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "@themost/common": "^2.5.5",
-    "@themost/data": "^2.6.1",
-    "@themost/express": "^1.5.15",
-    "@themost/query": "^2.5.0",
-    "@themost/sqlite": "^2.5.3",
-    "@themost/test": "^1.0.9",
+    "@themost/common": "^2.5.12",
+    "@themost/data": "^2.9.3",
+    "@themost/express": "^1.6.0",
+    "@themost/query": "^2.9.7",
+    "@themost/sqlite": "^2.6.12",
+    "@themost/test": "^2.2.0",
     "@types/jest": "^25.1.4",
     "@types/node": "^12.12.38",
     "@types/react": "^16.9.27",
@@ -61,25 +52,24 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
-    "gh-pages": "^2.2.0",
     "http-proxy-middleware": "^1.2.0",
-    "microbundle-crl": "^0.13.10",
-    "npm-run-all": "^4.1.5",
-    "pm2": "^4.5.6",
+    "pm2": "^5.2.2",
     "prettier": "^2.0.4",
-    "react": "^16.13.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-scripts": "5.0.1",
     "react-bootstrap": "^1.5.2",
-    "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
-    "typescript": "^3.7.5"
+    "rimraf": "^4.1.2",
+    "rollup": "^3.17.2",
+    "typescript": "^4.9.5"
   },
   "files": [
     "dist"
   ],
   "dependencies": {
-    "@themost/client": "^2.5.3",
+    "@themost/client": "^2.9.2",
     "axios": "^0.21.1"
   }
 }

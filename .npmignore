@@ -1,0 +1,15 @@
+# gitpod
+.gitpod.yml
+
+# prettier
+.prettierrc
+
+# build
+rollup.config.js
+tsconfig.json
+tsconfig.test.json
+
+# eslint
+.eslintrc
+.eslintignore
+
