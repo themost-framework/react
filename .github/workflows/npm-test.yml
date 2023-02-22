@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [12.x, 14.x, 16.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -20,8 +20,8 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm ci
-        npm run pm2:api
+        npm run start:api
         npm run build
-        npm run test:unit
+        npm test
       env:
         CI: true
