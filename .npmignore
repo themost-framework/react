@@ -9,7 +9,17 @@ rollup.config.js
 tsconfig.json
 tsconfig.test.json
 
+# babel
+babel.config.js
+
 # eslint
 .eslintrc
 .eslintignore
+
+# test
+example
+
+# src
+src/*.test.tsx
+
 

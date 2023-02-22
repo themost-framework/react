@@ -18,6 +18,8 @@ module.exports = [
       }
     ],
     external: Object.keys(pkg.dependencies),
-    plugins: [typescript({ tsconfig: './tsconfig.json' })]
+    plugins: [
+      typescript({ tsconfig: './tsconfig.json' })
+    ]
   }
 ]

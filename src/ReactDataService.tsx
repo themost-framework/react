@@ -6,6 +6,7 @@ import {
   ResponseError
 } from '@themost/client'
 import axios from 'axios'
+import { Buffer } from 'buffer'
 /**
  * A client data service for MOST Web Framework
  */
