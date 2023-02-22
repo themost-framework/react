@@ -64,10 +64,6 @@
     "rollup": "^3.17.2",
     "typescript": "^4.9.5"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "dependencies": {
     "@themost/client": "^2.9.2",
     "axios": "^0.21.1",

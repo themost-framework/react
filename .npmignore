@@ -15,11 +15,15 @@ babel.config.js
 # eslint
 .eslintrc
 .eslintignore
+.editorconfig
 
 # test
 example
 
 # src
 src/*.test.tsx
+
+# github
+.github
 
 
