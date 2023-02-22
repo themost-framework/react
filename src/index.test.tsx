@@ -47,14 +47,34 @@ describe('ReactDataContext', () => {
       )
     ).toBeTruthy()
   })
-  it('should query user', async () => {
+  it('should query item', async () => {
     const token = await getToken()
     const context = new ReactDataContext('http://localhost:4000/api/')
     context.setBearerAuthorization(token.access_token)
     const item = await context
       .model('Users')
-      .where('name')
-      .equal('alexis.rees@example.com')
+      .where((x: any) => {
+        return x.name === 'alexis.rees@example.com'
+      })
+      .getItem()
+    expect(item).toBeTruthy()
+    expect(item.name).toBe('alexis.rees@example.com')
+  })
+
+  it('should query item with params', async () => {
+    const token = await getToken()
+    const context = new ReactDataContext('http://localhost:4000/api/')
+    context.setBearerAuthorization(token.access_token)
+    const item = await context
+      .model('Users')
+      .where(
+        (x: any, emailAddress: string) => {
+          return x.name === emailAddress
+        },
+        {
+          emailAddress: 'alexis.rees@example.com'
+        }
+      )
       .getItem()
     expect(item).toBeTruthy()
     expect(item.name).toBe('alexis.rees@example.com')

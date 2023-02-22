@@ -27,7 +27,12 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "paths": {
+      "@themost/react": [
+        "../dist/index"
+      ]
+    }
   },
   "include": [
     "src"

@@ -1,0 +1,29 @@
+# gitpod
+.gitpod.yml
+
+# prettier
+.prettierrc
+
+# build
+rollup.config.js
+tsconfig.json
+tsconfig.test.json
+
+# babel
+babel.config.js
+
+# eslint
+.eslintrc
+.eslintignore
+.editorconfig
+
+# test
+example
+
+# src
+src/*.test.tsx
+
+# github
+.github
+
+
