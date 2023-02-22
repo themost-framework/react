@@ -11,10 +11,10 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
       - run: npm ci
       - run: npm run pm2:api
-      - run: npm run test:unit
+      - run: npm test -- --watchAll=false
       - run: npm run build
 
   publish-npm:
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build
