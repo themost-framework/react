@@ -1,8 +1,8 @@
 # @themost/react
 
-> MOST Web Framework React Client Library
+> [@themost-framework](https://github.com/themost-framework/) client library for react based on [@themost/client](https://www.npmjs.com/package/@themost/client)
 
-[![NPM](https://img.shields.io/npm/v/themost-react.svg)](https://www.npmjs.com/package/themost-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@themost%2Fnode.svg)](https://www.npmjs.com/package/@themost/react) ![GitHub top language](https://img.shields.io/github/languages/top/themost-framework/react) [![License](https://img.shields.io/npm/l/@themost/react)](https://github.com/themost-framework/react/blob/master/LICENSE) ![GitHub last commit](https://img.shields.io/github/last-commit/themost-framework/react) ![GitHub Release Date](https://img.shields.io/github/release-date/themost-framework/react)
 
 ## Install
 
@@ -12,14 +12,50 @@ npm install --save @themost/react
 
 ## Usage
 
+Create application data context
+
 ```tsx
-import React, { Component } from 'react'
+import React from 'react'
+import { ReactDataContext } from '@themost/react'
+export const context = React.createContext(new ReactDataContext('http://localhost:3000/'))
+```
 
-import {ReactDataContext} from '@themost/react'
+where `new ReactDataContext(string)` is being used for defining the remote api server
 
-class Example extends Component {
+and use context in any component e.g.
+
+```tsx
+import React from 'react'
+import { context } from './context'
+
+interface CustomersState {
+  items: any[]
+}
+
+export default class Customers extends React.Component<{}, CustomersState> {
+  constructor(props: any) {
+    super(props)
+    this.state = { items: [] }
+  }
+
+  componentDidMount() {
+    context
+        .model('People')
+        .asQueryable()
+        .getItems()
+        .then((items) => {
+          this.setState({
+            items
+          })
+        })
+  }
+
   render() {
-    //
+    return (
+      <>
+        ...
+      </>
+    )
   }
 }
 ```
