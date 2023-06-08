@@ -14,9 +14,9 @@
   "scripts": {
     "build": "rimraf dist && rollup -c ./rollup.config.js",
     "test": "react-scripts test",
-    "start:api": "PORT=4000 node ./node_modules/@themost/test/dist/server/standalone",
+    "start:api": "IP=0.0.0.0 PORT=4000 node ./node_modules/@themost/test/dist/server/standalone",
     "pm2": "pm2",
-    "pm2:api": "PORT=4000 npm run pm2 start ./node_modules/@themost/test/dist/server/standalone.js"
+    "pm2:api": "IP=0.0.0.0 PORT=4000 npm run pm2 start ./node_modules/@themost/test/dist/server/standalone.js"
   },
   "peerDependencies": {
     "react": "^16 || ^17 || ^18"
@@ -28,11 +28,11 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@themost/common": "^2.5.12",
-    "@themost/data": "^2.9.3",
-    "@themost/express": "^1.6.0",
-    "@themost/query": "^2.9.7",
-    "@themost/sqlite": "^2.6.12",
-    "@themost/test": "^2.2.0",
+    "@themost/data": "^2.10.2",
+    "@themost/express": "^1.6.1",
+    "@themost/query": "^2.9.12",
+    "@themost/sqlite": "^2.6.14",
+    "@themost/test": "^2.3.0",
     "@types/jest": "^25.1.4",
     "@types/node": "^12.12.38",
     "@types/react": "^16.9.27",
@@ -61,7 +61,7 @@
     "react-dom": "^16.0.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "rimraf": "^4.1.2",
     "rollup": "^3.17.2",
     "typescript": "^4.9.5"
