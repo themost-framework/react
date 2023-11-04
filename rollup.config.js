@@ -17,9 +17,9 @@ module.exports = [
         sourcemap: true
       }
     ],
-    external: Object.keys(pkg.dependencies),
+    external: Object.keys(pkg.dependencies).concat(pkg.peerDependencies),
     plugins: [
-      typescript({ tsconfig: './tsconfig.json' })
+      typescript({ tsconfig: './tsconfig.lib.json' })
     ]
   }
 ]
