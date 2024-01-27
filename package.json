@@ -15,6 +15,7 @@
   "scripts": {
     "build": "rimraf dist && rollup -c ./rollup.config.js",
     "test": "react-scripts test",
+    "test:debug": "react-scripts --inspect test --runInBand --no-cache",
     "start:api": "IP=0.0.0.0 PORT=4000 node ./node_modules/@themost/test/dist/server/standalone",
     "pm2": "pm2",
     "pm2:api": "IP=0.0.0.0 PORT=4000 npm run pm2 start ./node_modules/@themost/test/dist/server/standalone.js"
@@ -40,6 +41,7 @@
     "@types/react-dom": "^16.9.7",
     "@types/react-router": "^5.1.13",
     "@types/react-router-dom": "^5.1.7",
+    "@types/superagent": "^8.1.1",
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
     "@typescript-eslint/typescript-estree": "^4.21.0",
@@ -68,8 +70,6 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "@themost/client": "^2.11.0",
-    "axios": "^1.6.5",
-    "buffer": "^6.0.3"
+    "@themost/client": "^2.13.0"
   }
 }

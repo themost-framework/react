@@ -17,7 +17,9 @@ module.exports = [
         sourcemap: true
       }
     ],
-    external: Object.keys(pkg.dependencies).concat(pkg.peerDependencies),
+    external: Object.keys(pkg.dependencies).concat(pkg.peerDependencies).concat(
+      '@themost/client/common'
+    ),
     plugins: [
       typescript({ tsconfig: './tsconfig.lib.json' })
     ]
