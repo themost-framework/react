@@ -1,5 +1,5 @@
 import { ReactDataContext } from '.'
-import axios from 'axios'
+import { Request } from 'superagent'
 
 async function getToken(): Promise<{
   // eslint-disable-next-line camelcase
@@ -7,7 +7,13 @@ async function getToken(): Promise<{
   // eslint-disable-next-line camelcase
   refresh_token?: string
 }> {
-  const data = new URLSearchParams({
+  const headers: { [key: string]: string } = {
+    Accept: 'application/json',
+    Origin: 'http://localhost:4000/',
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+  const request = new Request('POST', 'http://localhost:4000/auth/token').set(headers)
+  const response = await request.send({
     client_id: '9165351833584149',
     client_secret: 'hTgqFBUhCfHs/quf/wnoB+UpDSfUusKA',
     username: 'alexis.rees@example.com',
@@ -15,15 +21,7 @@ async function getToken(): Promise<{
     grant_type: 'password',
     scope: 'profile'
   })
-
-  const response = await axios.post('http://localhost:4000/auth/token', data, {
-    headers: {
-      Accept: 'application/json',
-      Origin: 'http://localhost:4000/',
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  })
-  return response.data
+  return response.body
 }
 
 describe('ReactDataContext', () => {
